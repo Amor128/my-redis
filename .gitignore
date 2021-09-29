@@ -1,4 +1,5 @@
 HELP.md
+**/src/test/java/com/ermao/Config.java
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
