@@ -45,3 +45,4 @@ gen/
 logs/
 log
 temp/
+/my-redis-01-basic/src/test/java/com/ermao/Config.java
