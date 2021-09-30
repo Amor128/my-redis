@@ -77,7 +77,7 @@ public class StringTest {
 	}
 
 	@Test
-	public void setAndGetObject() {
+	public void setAndGetObjectSerial() {
 		// 序列化对象得到字符串，使用 base64 编码
 		// may occur that invalid header for outPutStream/InputStream
 		Apple oldApple = new Apple();
@@ -117,6 +117,30 @@ public class StringTest {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Test
+	public void setAndGetObjectSeparately() {
+		Apple apple = new Apple();
+		String color = apple.getColor();
+		float weight = apple.getWeight();
+		long serialVersionUID = apple.getSerialVersionUID();
+
+		String status = j.set("apple:color", color);
+		assertEquals("OK", status);
+		status = j.set("apple:weight", String.valueOf(weight));
+		assertEquals("OK", status);
+		status = j.set("apple:serialVersionUID", String.valueOf(serialVersionUID));
+		assertEquals("OK", status);
+
+		String newColor = j.get("apple:color");
+		float newWeight = Float.parseFloat(j.get("apple:weight"));
+		long newSerialVersionUID = Long.parseLong(j.get("apple:serialVersionUID"));
+		Apple newApple = new Apple();
+		newApple.setColor(newColor);
+		newApple.setSerialVersionUID(newSerialVersionUID);
+		newApple.setWeight(newWeight);
+		assertEquals(newApple, apple);
 	}
 
 	@Test
@@ -226,6 +250,11 @@ public class StringTest {
 		// 1 和 2 代表查询的范围是从第 1 到第 2 个字节，如果超出范围则补 0
 		pos = j.bitpos("foo", true, new BitPosParams(1L, 2L));
 		assertEquals(9L, pos.longValue());
+	}
+
+	@Test
+	public void storeBlog() {
+
 	}
 
 }
