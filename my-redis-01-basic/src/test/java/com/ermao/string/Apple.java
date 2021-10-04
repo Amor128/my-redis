@@ -19,4 +19,28 @@ public class Apple implements Serializable {
 				&& this.weight == target.weight
 				&& this.serialVersionUID == target.serialVersionUID;
 	}
+
+	public void setSerialVersionUID(long serialVersionUID) {
+		this.serialVersionUID = serialVersionUID;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public void setWeight(float weight) {
+		this.weight = weight;
+	}
+
+	public long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public float getWeight() {
+		return weight;
+	}
 }
