@@ -251,10 +251,4 @@ public class StringTest {
 		pos = j.bitpos("foo", true, new BitPosParams(1L, 2L));
 		assertEquals(9L, pos.longValue());
 	}
-
-	@Test
-	public void storeBlog() {
-
-	}
-
 }
