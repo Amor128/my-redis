@@ -99,6 +99,15 @@ public class BasicSetTest {
 	}
 
 	@Test
+	public void setScale() {
+		long effected = j.sadd("setA", "1", "2", "3");
+		assertEquals(3L, effected);
+
+		long card = j.scard("setA");
+		assertEquals(3L, card);
+	}
+
+	@Test
 	public void setUnion() {
 		// if you want to store the result into other key, just append "store" behind the command
 
@@ -120,15 +129,6 @@ public class BasicSetTest {
 		assertTrue(union.contains("3"));
 		assertTrue(union.contains("2"));
 		assertTrue(union.contains("1"));
-	}
-
-	@Test
-	public void setScale() {
-		long effected = j.sadd("setA", "1", "2", "3");
-		assertEquals(3L, effected);
-
-		long card = j.scard("setA");
-		assertEquals(3L, card);
 	}
 
 	@Test
