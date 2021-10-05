@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.ListPosition;
+import redis.clients.jedis.exceptions.JedisDataException;
 
 import java.util.List;
 
@@ -67,7 +68,7 @@ public class ListTest {
 
 		// 顺序永远只能是从左向右
 		List<String> numbers1 = j.lrange("numbers", -3L, -1L);
-		// 3, 5, 6
+		// 4, 5, 6
 		assertEquals("4", numbers1.get(0));
 
 		// 当第二个参数 count > 0 时，删除所有匹配元素，负数和正数则会分别
@@ -89,11 +90,22 @@ public class ListTest {
 		String number_2 = j.lindex("numbers", 1L);
 		assertEquals("2", number_2);
 
+		// 下标越界会返回 null
+		String number_7 = j.lindex("numbers", 7L);
+		assertNull(number_7);
+
 		String status = j.lset("numbers", 4L, "55");
 		assertEquals("OK", status);
 
 		String number_4 = j.lindex("numbers", 4L);
 		assertEquals("55", number_4);
+
+		try {
+			number_7 = j.lset("numbers", 7L, "77");
+			assertNull(number_7);
+		} catch (JedisDataException e) {
+			System.err.println(e);
+		}
 	}
 
 	@Test
@@ -107,6 +119,7 @@ public class ListTest {
 		// 3, 2, 1, 4, 5, 6
 
 		String status = j.ltrim("numbers", 1L, 4L);
+		// 2, 1, 4, 5
 		assertEquals("OK", status);
 
 		List<String> numbers = j.lrange("numbers", 0, -1);
