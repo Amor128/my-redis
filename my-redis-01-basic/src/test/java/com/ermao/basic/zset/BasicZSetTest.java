@@ -1,4 +1,4 @@
-package com.ermao.zset;
+package com.ermao.basic.zset;
 
 import com.ermao.Config;
 import org.junit.After;

@@ -1,4 +1,4 @@
-package com.ermao.string;
+package com.ermao.basic.string;
 
 import static org.junit.Assert.*;
 

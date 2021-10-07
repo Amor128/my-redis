@@ -1,4 +1,4 @@
-package com.ermao.list;
+package com.ermao.basic.list;
 
 import com.ermao.Config;
 import org.junit.After;

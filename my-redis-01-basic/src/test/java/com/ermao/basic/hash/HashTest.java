@@ -1,4 +1,4 @@
-package com.ermao.hash;
+package com.ermao.basic.hash;
 
 import com.ermao.Config;
 import org.junit.After;
